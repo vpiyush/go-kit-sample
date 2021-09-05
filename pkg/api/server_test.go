@@ -6,10 +6,14 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
+
+	"github.com/vpiyush/go-kit-sample/pkg/services"
+	"github.com/vpiyush/go-kit-sample/pkg/storage/inmem"
 )
 
 func TestNewHttpServer(t *testing.T) {
-	srv := httptest.NewServer(NewHttpServer())
+	svc := services.NewService(inmem.NewStorage())
+	srv := httptest.NewServer(NewHttpServer(svc))
 	defer srv.Close()
 	tests := []struct {
 		name, method, url, body, want string

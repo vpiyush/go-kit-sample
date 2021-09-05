@@ -1,15 +1,14 @@
 package api
 
 import (
+	"net/http"
+
 	httptransport "github.com/go-kit/kit/transport/http"
 	"github.com/gorilla/mux"
 	"github.com/vpiyush/go-kit-sample/pkg/services"
-	"github.com/vpiyush/go-kit-sample/pkg/storage/inmem"
-	"net/http"
 )
 
-func NewHttpServer() *mux.Router {
-	svc := services.NewService(inmem.NewStorage())
+func NewHttpServer(svc services.PairService) *mux.Router {
 	r := mux.NewRouter()
 	r.Use(commonMiddleware)
 	addPairHandler := httptransport.NewServer(
