@@ -1,2 +1,2 @@
 # go-kit-sample
-Sample service to enhance understanding of go-kit 
+Sample service to get better understanding of go-kit
